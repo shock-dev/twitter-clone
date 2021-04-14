@@ -6,7 +6,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import PeopleIcon from '@material-ui/icons/People';
 import MessageIcon from '@material-ui/icons/Message';
 
-import { ModalBlock } from '../components/ModalBlock';
+import ModalBlock from '../components/ModalBlock';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 
