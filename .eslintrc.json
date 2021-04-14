@@ -26,6 +26,7 @@
       "quote-props": ["error", "as-needed"],
       "max-len": ["error", { "code": 140 }],
       "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": "error"
+      "@typescript-eslint/no-unused-vars": "error",
+      "linebreak-style": "off"
     }
 }
