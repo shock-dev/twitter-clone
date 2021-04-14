@@ -1,7 +1,10 @@
 import React from 'react';
+import SignIn from './pages/SignIn';
 
 const App = () => {
-  return <h1>Hello</h1>;
+  return (
+    <SignIn />
+  );
 };
 
 export default App;
