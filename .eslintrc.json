@@ -27,6 +27,7 @@
       "max-len": ["error", { "code": 140 }],
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": "error",
-      "linebreak-style": "off"
+      "linebreak-style": "off",
+      "require-jsdoc": "off"
     }
 }
