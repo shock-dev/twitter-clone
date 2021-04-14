@@ -82,7 +82,7 @@ export const useStylesSignIn = makeStyles((theme) => ({
   }
 }));
 
-const SignIn = () => {
+const SignIn: React.FC = () => {
   const classes = useStylesSignIn();
   const [visibleModal, setVisibleModal] = React.useState<'signIn' | 'signUp'>();
 
@@ -97,7 +97,6 @@ const SignIn = () => {
   const handleCloseModal = (): void => {
     setVisibleModal(undefined);
   };
-
 
   return (
     <div className={classes.wrapper}>
