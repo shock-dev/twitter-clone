@@ -49,7 +49,33 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 32,
     marginRight: 15
   },
-  loginSide: {}
+  loginSide: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: '0 0 50%'
+  },
+  loginSideTwitterIcon: {
+    fontSize: 45
+  },
+  loginSideWrapper: {
+    width: 380
+  },
+  loginSideTitle: {
+    fontWeight: 700,
+    fontSize: 32,
+    marginBottom: 60,
+    marginTop: 20
+  },
+  loginSideField: {
+    marginBottom: 18
+  },
+  registerField: {
+    marginBottom: theme.spacing(5)
+  },
+  loginFormControl: {
+    marginBottom: theme.spacing(2)
+  }
 }));
 
 const SignIn = () => {
@@ -80,31 +106,41 @@ const SignIn = () => {
           </li>
         </ul>
       </section>
-      <div className={classes.loginSide}>
-        <TwitterIcon />
-        <Typography>
-          Узнайте, что происходит в мире прямо сейчас
-        </Typography>
-        <Typography>
-          <b>Присоединяйтесь к Твиттеру прямо сейчас!</b>
-        </Typography>
-        <br />
-        <Button
-          style={{ marginBottom: 20 }}
-          variant="contained"
-          color="primary"
-          fullWidth
-        >
-          Зарегистрироваться
-        </Button>
-        <Button
-          variant="outlined"
-          color="primary"
-          fullWidth
-        >
-          Войти
-        </Button>
-      </div>
+      <section className={classes.loginSide}>
+        <div className={classes.loginSideWrapper}>
+          <TwitterIcon
+            color="primary"
+            className={classes.loginSideTwitterIcon}
+          />
+          <Typography
+            className={classes.loginSideTitle}
+            gutterBottom
+            variant="h4"
+          >
+            Узнайте, что происходит в мире прямо сейчас
+          </Typography>
+          <Typography>
+            <b>Присоединяйтесь к Твиттеру прямо сейчас!</b>
+          </Typography>
+
+          <br />
+          <Button
+            style={{ marginBottom: 20 }}
+            variant="contained"
+            color="primary"
+            fullWidth
+          >
+            Зарегистрироваться
+          </Button>
+          <Button
+            variant="outlined"
+            color="primary"
+            fullWidth
+          >
+            Войти
+          </Button>
+        </div>
+      </section>
     </div>
   );
 };
