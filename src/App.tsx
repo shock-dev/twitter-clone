@@ -8,7 +8,7 @@ const App = () => {
     <div className="app">
       <Switch>
         <Route path="/signin" component={SignIn} />
-        <Route path="/" component={Home} />
+        <Route path="/home" component={Home} />
       </Switch>
     </div>
   );
