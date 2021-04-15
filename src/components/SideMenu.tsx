@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import SearchIcon from '@material-ui/icons/Search';
 import NotificationIcon from '@material-ui/icons/NotificationsNoneOutlined';
@@ -17,12 +18,10 @@ import { AddTweetForm } from './AddTweetForm';
 
 interface SideMenuProps {
   classes: ReturnType<typeof useHomeStyles>;
-  onClickLogo: () => void;
 }
 
 const SideMenu: React.FC<SideMenuProps> = ({
-  classes,
-  onClickLogo
+  classes
 }: SideMenuProps): React.ReactElement => {
   const [visibleAddTweet, setSetVisibleAddTweet] = React.useState<boolean>(false);
 
@@ -37,9 +36,11 @@ const SideMenu: React.FC<SideMenuProps> = ({
   return (
     <ul className={classes.sideMenuList}>
       <li className={classes.sideMenuListItem}>
-        <IconButton className={classes.logo} aria-label="" color="primary" onClick={onClickLogo}>
-          <TwitterIcon className={classes.logoIcon} />
-        </IconButton>
+        <Link to="/home">
+          <IconButton className={classes.logo} aria-label="" color="primary">
+            <TwitterIcon className={classes.logoIcon} />
+          </IconButton>
+        </Link>
       </li>
       <li className={classes.sideMenuListItem}>
         <div>
