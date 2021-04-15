@@ -37,8 +37,8 @@ const Home = (): React.ReactElement => {
   const isLoading = useSelector(selectIsTweetsLoading);
 
   useEffect(() => {
-    dispatch(fetchTags());
     dispatch(fetchTweets());
+    dispatch(fetchTags());
   }, []);
 
   return (
