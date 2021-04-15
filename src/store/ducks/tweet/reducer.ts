@@ -8,7 +8,22 @@ const initialTweetState: TweetStateInterface = {
 };
 
 export const tweet = produce((draft: Draft<TweetStateInterface>, action: TweetAction) => {
-  if (action.type === TweetsActionType.SET_TWEETS) {
-    draft.items = action.payload;
+  switch (action.type) {
+    case TweetsActionType.SET_TWEETS:
+      draft.items = action.payload;
+      draft.loadingState = LoadingState.LOADED;
+      break;
+
+    case TweetsActionType.FETCH_TWEETS:
+      draft.items = [];
+      draft.loadingState = LoadingState.LOADING;
+      break;
+
+    case TweetsActionType.SET_LOADING_STATE:
+      draft.loadingState = action.payload;
+      break;
+
+    default:
+      break;
   }
 }, initialTweetState);
