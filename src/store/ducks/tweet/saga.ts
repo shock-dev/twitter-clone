@@ -1,8 +1,10 @@
-import { takeEvery } from 'redux-saga/effects';
+import { takeEvery, call } from 'redux-saga/effects';
 import { TweetsActionType } from './actions';
+import TweetApi from '../../../services/api/tweet.api';
 
-function* fetchTweetsRequest() {
-  console.log('test');
+function* fetchTweetsRequest(): Generator {
+  const data = yield call(TweetApi.fetchTweets);
+  console.log(data);
 }
 
 function* tweetSaga() {
