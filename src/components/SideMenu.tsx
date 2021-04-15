@@ -17,10 +17,12 @@ import { AddTweetForm } from './AddTweetForm';
 
 interface SideMenuProps {
   classes: ReturnType<typeof useHomeStyles>;
+  onClickLogo: () => void;
 }
 
 const SideMenu: React.FC<SideMenuProps> = ({
-  classes
+  classes,
+  onClickLogo
 }: SideMenuProps): React.ReactElement => {
   const [visibleAddTweet, setSetVisibleAddTweet] = React.useState<boolean>(false);
 
@@ -35,7 +37,7 @@ const SideMenu: React.FC<SideMenuProps> = ({
   return (
     <ul className={classes.sideMenuList}>
       <li className={classes.sideMenuListItem}>
-        <IconButton className={classes.logo} aria-label="" color="primary">
+        <IconButton className={classes.logo} aria-label="" color="primary" onClick={onClickLogo}>
           <TwitterIcon className={classes.logoIcon} />
         </IconButton>
       </li>

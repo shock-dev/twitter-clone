@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Container,
   Grid,
@@ -23,16 +23,30 @@ import Tweet from '../../components/Tweet';
 import SideMenu from '../../components/SideMenu';
 import { useHomeStyles } from './theme';
 import SearchTextField from '../../components/SearchTextField';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTweets } from '../../store/ducks/tweet/actions';
+import { selectIsTweetsLoading, selectTweetItems } from '../../store/ducks/tweet/selectors';
 
 const Home = (): React.ReactElement => {
   const classes = useHomeStyles();
-  const isLoading = false;
+  const dispatch = useDispatch();
+  const tweets = useSelector(selectTweetItems);
+  const isLoading = useSelector(selectIsTweetsLoading);
+
+  const fetchTweetsHandler = () => dispatch(fetchTweets());
+
+  useEffect(() => {
+    fetchTweetsHandler();
+  }, []);
 
   return (
     <Container className={classes.wrapper} maxWidth="lg">
       <Grid container spacing={3}>
         <Grid sm={1} md={3} item>
-          <SideMenu classes={classes} />
+          <SideMenu
+            classes={classes}
+            onClickLogo={fetchTweetsHandler}
+          />
         </Grid>
         <Grid sm={8} md={6} item>
           <Paper className={classes.tweetsWrapper} variant="outlined">
@@ -50,18 +64,14 @@ const Home = (): React.ReactElement => {
                 <CircularProgress />
               </div>
             ) : (
-              <Tweet
-                key={1}
-                text={'some text'}
-                user={{
-                  fullname: 'Glafira Zhur',
-                  username: 'GlafiraZhur',
-                  avatarUrl:
-                    'https://images.unsplash.com/photo-1528914457842-1af67b57139d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
-
-                }}
-                classes={classes}
-              />
+              tweets.map((tweet) =>
+                <Tweet
+                  key={tweet._id}
+                  text={tweet.text}
+                  user={tweet.user}
+                  classes={classes}
+                />
+              )
             )}
           </Paper>
         </Grid>
