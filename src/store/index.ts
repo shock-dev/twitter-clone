@@ -3,13 +3,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import saga from './saga.root';
 import root from './reducer.root';
-import { TweetStateInterface } from './ducks/tweet/contracts/state';
+import { TweetsStateInterface } from './ducks/tweets/contracts/state';
 import { TagsStateInterface } from './ducks/tags/contracts/state';
 
 const sagaMiddleware = createSagaMiddleware();
 
 export interface RootState {
-  tweet: TweetStateInterface
+  tweets: TweetsStateInterface
   tags: TagsStateInterface
 }
 

@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { TweetStateInterface } from '../../store/ducks/tweet/contracts/state';
+import { TweetsStateInterface } from '../../store/ducks/tweets/contracts/state';
 
-class TweetApi {
-  async fetchTweets(): Promise<TweetStateInterface['items']> {
+class TweetsApi {
+  async fetchTweets(): Promise<TweetsStateInterface['items']> {
     const { data } = await axios.get('/tweets');
     return data;
   }
 }
 
-export default new TweetApi();
+export default new TweetsApi();

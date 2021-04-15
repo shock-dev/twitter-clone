@@ -1,13 +1,13 @@
 import produce, { Draft } from 'immer';
-import { LoadingState, TweetStateInterface } from './contracts/state';
-import { TweetAction, TweetsActionType } from './actions';
+import { LoadingState, TweetsStateInterface } from './contracts/state';
+import { TweetsAction, TweetsActionType } from './actions';
 
-const initialTweetState: TweetStateInterface = {
+const initialTweetsState: TweetsStateInterface = {
   items: [],
   loadingState: LoadingState.NEVER
 };
 
-export const tweet = produce((draft: Draft<TweetStateInterface>, action: TweetAction) => {
+export const tweets = produce((draft: Draft<TweetsStateInterface>, action: TweetsAction) => {
   switch (action.type) {
     case TweetsActionType.SET_TWEETS:
       draft.items = action.payload;
@@ -26,4 +26,4 @@ export const tweet = produce((draft: Draft<TweetStateInterface>, action: TweetAc
     default:
       break;
   }
-}, initialTweetState);
+}, initialTweetsState);
