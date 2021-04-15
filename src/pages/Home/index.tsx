@@ -52,12 +52,14 @@ const Home = (): React.ReactElement => {
             <Paper className={classes.tweetsHeader} variant="outlined">
               <Typography variant="h6">Главная</Typography>
             </Paper>
-            <Paper>
-              <div className={classes.addForm}>
-                <AddTweetForm classes={classes} />
-              </div>
-              <div className={classes.addFormBottomLine} />
-            </Paper>
+            <Route path={['/home', '/home/search']} exact>
+              <Paper>
+                <div className={classes.addForm}>
+                  <AddTweetForm classes={classes} />
+                </div>
+                <div className={classes.addFormBottomLine} />
+              </Paper>
+            </Route>
             <Route path="/home" exact>
               {isLoading ? (
                 <div className={classes.tweetsCentred}>
