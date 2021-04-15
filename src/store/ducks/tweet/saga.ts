@@ -1,10 +1,15 @@
-import { takeEvery, call } from 'redux-saga/effects';
-import { TweetsActionType } from './actions';
+import { call, put, takeEvery } from 'redux-saga/effects';
+import { setTweets, setTweetsLoadingState, TweetsActionType } from './actions';
 import TweetApi from '../../../services/api/tweet.api';
+import { LoadingState } from './contracts/state';
 
-function* fetchTweetsRequest(): Generator {
-  const data = yield call(TweetApi.fetchTweets);
-  console.log(data);
+function* fetchTweetsRequest(): any {
+  try {
+    const tweets = yield call(TweetApi.fetchTweets);
+    yield put(setTweets(tweets));
+  } catch (e) {
+    yield put(setTweetsLoadingState(LoadingState.ERROR));
+  }
 }
 
 function* tweetSaga() {
