@@ -6,9 +6,9 @@ import root from './root';
 
 const sagaMiddleware = createSagaMiddleware();
 
-sagaMiddleware.run(rootSaga);
-
 export const store = createStore(
   root,
   composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
+
+sagaMiddleware.run(rootSaga);
