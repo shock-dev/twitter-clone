@@ -4,11 +4,13 @@ import createSagaMiddleware from 'redux-saga';
 import saga from './saga.root';
 import root from './reducer.root';
 import { TweetStateInterface } from './ducks/tweet/contracts/state';
+import { TagsStateInterface } from './ducks/tags/contracts/state';
 
 const sagaMiddleware = createSagaMiddleware();
 
 export interface RootState {
   tweet: TweetStateInterface
+  tags: TagsStateInterface
 }
 
 export const store = createStore(
