@@ -29,6 +29,7 @@ import { selectIsTweetsLoading, selectTweetItems } from '../../store/ducks/tweet
 import Tags from '../../components/Tags';
 import { fetchTags } from '../../store/ducks/tags/actions';
 import { Route } from 'react-router-dom';
+import BackButton from '../../components/BackButton';
 
 const Home = (): React.ReactElement => {
   const classes = useHomeStyles();
@@ -50,7 +51,15 @@ const Home = (): React.ReactElement => {
         <Grid sm={8} md={6} item>
           <Paper className={classes.tweetsWrapper} variant="outlined">
             <Paper className={classes.tweetsHeader} variant="outlined">
-              <Typography variant="h6">Главная</Typography>
+              <Route path="/home/:any">
+                <BackButton />
+              </Route>
+              <Route path="/home/tweet">
+                <Typography variant="h6">Твитнуть</Typography>
+              </Route>
+              <Route path={['/home', '/home/search']} exact>
+                <Typography variant="h6">Твиты</Typography>
+              </Route>
             </Paper>
             <Route path={['/home', '/home/search']} exact>
               <Paper>
