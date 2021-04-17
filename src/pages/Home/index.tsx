@@ -30,6 +30,7 @@ import Tags from '../../components/Tags';
 import { fetchTags } from '../../store/ducks/tags/actions';
 import { Route } from 'react-router-dom';
 import BackButton from '../../components/BackButton';
+import FullTweet from '../../components/FullTweet';
 
 const Home = (): React.ReactElement => {
   const classes = useHomeStyles();
@@ -84,6 +85,7 @@ const Home = (): React.ReactElement => {
                 )
               )}
             </Route>
+            <Route path="/home/tweet/:id" component={FullTweet} exact />
           </Paper>
         </Grid>
         <Grid sm={3} md={3} item>
