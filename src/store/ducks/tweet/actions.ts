@@ -14,6 +14,7 @@ export interface SetDataTweetActionInterface extends Action<TweetActionType> {
 
 export interface FetchDataTweetActionInterface extends Action<TweetActionType> {
   type: TweetActionType.FETCH_DATA
+  payload: string
 }
 
 export interface SetDataTweetLoadingStateActionInterface extends Action<TweetActionType> {
@@ -21,16 +22,17 @@ export interface SetDataTweetLoadingStateActionInterface extends Action<TweetAct
   payload: LoadingState
 }
 
-export const setTags = (payload: TweetDataStateInterface['data']): SetDataTweetActionInterface => ({
+export const setTweetData = (payload: TweetDataStateInterface['data']): SetDataTweetActionInterface => ({
   type: TweetActionType.SET_DATA,
   payload
 });
 
-export const fetchTags = (): FetchDataTweetActionInterface => ({
-  type: TweetActionType.FETCH_DATA
+export const fetchTweetData = (id: string): FetchDataTweetActionInterface => ({
+  type: TweetActionType.FETCH_DATA,
+  payload: id
 });
 
-export const setTagsLoadingState = (payload: LoadingState): SetDataTweetLoadingStateActionInterface => ({
+export const setTweetDataLoadingState = (payload: LoadingState): SetDataTweetLoadingStateActionInterface => ({
   type: TweetActionType.SET_LOADING_STATE,
   payload
 });
