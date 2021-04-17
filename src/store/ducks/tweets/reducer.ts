@@ -23,6 +23,10 @@ export const tweets = produce((draft: Draft<TweetsStateInterface>, action: Tweet
       draft.loadingState = action.payload;
       break;
 
+    case TweetsActionType.ADD_TWEET:
+      draft.items.push(action.payload);
+      break;
+
     default:
       break;
   }
