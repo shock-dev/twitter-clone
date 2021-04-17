@@ -11,6 +11,11 @@ class TweetsApi {
     const { data } = await axios.get(`/tweets?_id=${id}`);
     return data;
   }
+
+  async addTweet(tweet: TweetsInterface): Promise<TweetsInterface> {
+    const { data } = await axios.post('/tweets', tweet);
+    return data;
+  }
 }
 
 export default new TweetsApi();
