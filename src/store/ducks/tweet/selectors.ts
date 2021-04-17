@@ -5,6 +5,6 @@ export const selectTweet = (state: RootState): TweetDataStateInterface => state.
 
 export const selectLoadingState = (state: RootState): LoadingState => selectTweet(state).loadingState;
 
-export const selectIsTweetDataLoaded = (state: RootState): boolean => selectLoadingState(state) === LoadingState.LOADED;
+export const selectIsTweetDataLoading = (state: RootState): boolean => selectLoadingState(state) === LoadingState.LOADING;
 
 export const selectTweetData = (state: RootState): TweetDataStateInterface['data'] => selectTweet(state).data;
