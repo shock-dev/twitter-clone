@@ -25,7 +25,7 @@ export const tweets = produce((draft: Draft<TweetsStateInterface>, action: Tweet
       break;
 
     case TweetsActionType.ADD_TWEET:
-      draft.items.push(action.payload);
+      draft.items.splice(0, 0, action.payload);
       draft.addFormState = AddFormState.NEVER;
       break;
 

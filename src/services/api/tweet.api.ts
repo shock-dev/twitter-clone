@@ -3,7 +3,7 @@ import { TweetsInterface, TweetsStateInterface } from '../../store/ducks/tweets/
 
 class TweetsApi {
   async fetchTweets(): Promise<TweetsStateInterface['items']> {
-    const { data } = await axios.get('/tweets');
+    const { data } = await axios.get('/tweets?_sort=id&_order=desc');
     return data;
   }
 
