@@ -7,9 +7,12 @@ import IconButton from '@material-ui/core/IconButton';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import EmojiIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
+import Alert from '@material-ui/lab/Alert';
 import { useHomeStyles } from '../pages/Home/theme';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchAddTweet } from '../store/ducks/tweets/actions';
+import { AddFormState } from '../store/ducks/tweets/contracts/state';
+import { selectAddFormState } from '../store/ducks/tweets/selectors';
 
 interface AddTweetFormProps {
   classes: ReturnType<typeof useHomeStyles>;
@@ -23,7 +26,8 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
   maxRows
 }: AddTweetFormProps): React.ReactElement => {
   const dispatch = useDispatch();
-  const [text, setText] = React.useState<string>('');
+  const addFormState = useSelector(selectAddFormState);
+  const [text, setText] = React.useState('');
   const textLimitPercent = Math.round((text.length / 280) * 100);
   const textCount = MAX_LENGTH - text.length;
 
@@ -90,13 +94,16 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
           )}
           <Button
             onClick={handleClickAddTweet}
-            disabled={text.length >= MAX_LENGTH}
+            disabled={addFormState === AddFormState.LOADING || !text || text.length >= MAX_LENGTH}
             color="primary"
             variant="contained">
-            Твитнуть
+            {addFormState === AddFormState.LOADING ? <CircularProgress size={16} color="inherit" /> : 'Твитнуть'}
           </Button>
         </div>
       </div>
+      {addFormState === AddFormState.ERROR && (
+        <Alert severity="error">Ошибка при добавлении твита 😳</Alert>
+      )}
     </div>
   );
 };
