@@ -17,8 +17,8 @@ class TweetsApi {
     return data.data;
   }
 
-  async addTweet(tweet: TweetsInterface): Promise<TweetsInterface> {
-    const { data } = await axios.post<Response<TweetsInterface>>('/tweets', tweet);
+  async addTweet(text: string): Promise<TweetsInterface> {
+    const { data } = await axios.post<Response<TweetsInterface>>('/tweets', { text });
     return data.data;
   }
 }
