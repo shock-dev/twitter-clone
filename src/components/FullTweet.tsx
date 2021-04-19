@@ -15,6 +15,8 @@ import { LoadingState } from '../store/ducks/tweets/contracts/state';
 import classNames from 'classnames';
 import { Avatar, Paper, Typography } from '@material-ui/core';
 import Tweet from './Tweet';
+import { format } from 'date-fns';
+import { ru } from 'date-fns/locale';
 
 const FullTweet: React.FC = (): React.ReactElement | null => {
   const classes = useHomeStyles();
@@ -73,8 +75,8 @@ const FullTweet: React.FC = (): React.ReactElement | null => {
           {tweetData.text}
         </Typography>
         <Typography>
-          <span className={classes.tweetUserName}>2:19 PM · 18 апр. 2021 г. · </span>
-          <span className={classes.tweetUserName}>Twitter for Android</span>
+          <span className={classes.tweetUserName}>{format(new Date(tweetData.createdAt), 'H:mm', { locale: ru })} · </span>
+          <span className={classes.tweetUserName}>{format(new Date(tweetData.createdAt), 'dd MMM. yyyy г.', { locale: ru })}</span>
         </Typography>
         <div className={classNames(classes.tweetFooter, classes.fullTweetFooter)}>
           <IconButton>
