@@ -80,6 +80,7 @@ const Home = (): React.ReactElement => {
                   <Tweet
                     key={tweet._id}
                     {...tweet}
+                    createdAt="1"
                     classes={classes}
                   />
                 )

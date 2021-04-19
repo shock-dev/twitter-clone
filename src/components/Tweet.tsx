@@ -17,6 +17,7 @@ interface TweetProps {
     username: string;
     avatarUrl: string;
   };
+  createdAt: string
   classes: ReturnType<typeof useHomeStyles>;
 }
 
@@ -24,6 +25,7 @@ const Tweet: React.FC<TweetProps> = ({
   _id,
   text,
   user,
+  createdAt,
   classes
 }: TweetProps): React.ReactElement => {
   return (
@@ -39,7 +41,7 @@ const Tweet: React.FC<TweetProps> = ({
             <b>{user.fullname}</b>&nbsp;
             <span className={classes.tweetUserName}>@{user.username}</span>&nbsp;
             <span className={classes.tweetUserName}>·</span>&nbsp;
-            <span className={classes.tweetUserName}>1 ч</span>
+            <span className={classes.tweetUserName}>{createdAt} ч</span>
           </Typography>
           <Typography variant="body1" gutterBottom>
             {text}
