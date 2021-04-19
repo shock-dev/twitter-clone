@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../core/axios';
 import { TagsStateInterface } from '../../store/ducks/tags/contracts/state';
 
 class TagsApi {
