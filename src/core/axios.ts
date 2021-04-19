@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 axios.interceptors.request.use((config) => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+  config.headers.Authorization = localStorage.getItem('token');
   return config;
 });
 
