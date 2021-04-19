@@ -8,6 +8,7 @@ import ShareIcon from '@material-ui/icons/ReplyOutlined';
 
 import { Avatar, IconButton, Paper, Typography } from '@material-ui/core';
 import { useHomeStyles } from '../pages/Home/theme';
+import { formatDate } from '../utils/formatDate';
 
 interface TweetProps {
   _id: string;
@@ -41,7 +42,7 @@ const Tweet: React.FC<TweetProps> = ({
             <b>{user.fullname}</b>&nbsp;
             <span className={classes.tweetUserName}>@{user.username}</span>&nbsp;
             <span className={classes.tweetUserName}>·</span>&nbsp;
-            <span className={classes.tweetUserName}>{createdAt} ч</span>
+            <span className={classes.tweetUserName}>{formatDate(new Date(createdAt))}</span>
           </Typography>
           <Typography variant="body1" gutterBottom>
             {text}

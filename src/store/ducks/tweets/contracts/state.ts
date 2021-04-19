@@ -14,6 +14,7 @@ export enum AddFormState {
 export interface TweetsInterface {
   _id: string
   text: string
+  createdAt: string
   user: {
     fullname: string
     username: string
