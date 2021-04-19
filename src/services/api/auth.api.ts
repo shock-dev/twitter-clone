@@ -13,7 +13,16 @@ class AuthApi {
       password: formData.password
     };
     const { data }: ResponseApi['data'] = await axios.post<ResponseApi>('/auth/login', payload);
-    return data;
+    return data.data;
+  }
+
+  async getMe() {
+    try {
+      const { data }: ResponseApi['data'] = await axios.get<ResponseApi>('/users/me');
+      return data.data;
+    } catch (e) {
+      console.log(e);
+    }
   }
 }
 
