@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useHomeStyles } from '../pages/Home/theme';
+import { useHomeStyles } from '../pages/theme';
 import { Paper, Typography } from '@material-ui/core';
 import List from '@material-ui/core/List/List';
 import ListItem from '@material-ui/core/ListItem/ListItem';

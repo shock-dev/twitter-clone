@@ -8,7 +8,7 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import EmojiIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 import Alert from '@material-ui/lab/Alert';
-import { useHomeStyles } from '../pages/Home/theme';
+import { useHomeStyles } from '../pages/theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAddTweet } from '../store/ducks/tweets/actions';
 import { AddFormState } from '../store/ducks/tweets/contracts/state';

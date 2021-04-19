@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from '@material-ui/core';
+import { colors, makeStyles, Theme } from '@material-ui/core';
 import grey from '@material-ui/core/colors/grey';
 
 export const useHomeStyles = makeStyles((theme: Theme) => ({
@@ -20,6 +20,10 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     maxWidth: 230
   },
   sideMenuListItem: {
+    '& a': {
+      color: 'inherit',
+      textDecoration: 'none'
+    },
     cursor: 'pointer',
     '&:hover': {
       '& div': {
@@ -59,7 +63,7 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
   },
   tweetsWrapper: {
     borderRadius: 0,
-    height: '100%',
+    minHeight: '100vh',
     borderTop: '0',
     borderBottom: '0'
   },
@@ -90,8 +94,8 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
   tweet: {
     display: 'flex',
     cursor: 'pointer',
-    paddingTop: 15,
     alignItems: 'flex-start',
+    paddingTop: 15,
     paddingLeft: 20,
     '&:hover': {
       backgroundColor: 'rgb(245, 248, 250)'
@@ -106,6 +110,14 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     height: theme.spacing(6.5),
     marginRight: 15
   },
+  tweetHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  tweetContent: {
+    flex: 1
+  },
   tweetFooter: {
     display: 'flex',
     position: 'relative',
@@ -117,13 +129,24 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     color: grey[500]
   },
   fullTweet: {
-    padding: 22
+    padding: 22,
+    paddingBottom: 0
   },
   fullTweetText: {
     fontSize: 24,
     marginTop: 20,
+    marginBottom: 20,
     lineHeight: 1.3125,
     wordBreak: 'break-word'
+  },
+  fullTweetFooter: {
+    margin: '0 auto',
+    borderTop: '1px solid #E6ECF0',
+    left: 0,
+    maxWidth: '100%',
+    justifyContent: 'space-around',
+    padding: '2px 0',
+    marginTop: 20
   },
   rightSide: {
     paddingTop: 20,
@@ -137,15 +160,6 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     '& .MuiList-root': {
       paddingTop: 0
     }
-  },
-  fullTweetFooter: {
-    margin: '0 auto',
-    borderTop: '1px solid #E6ECF0',
-    left: 0,
-    maxWidth: '100%',
-    justifyContent: 'space-around',
-    padding: '2px 0',
-    marginTop: 20
   },
   rightSideBlockHeader: {
     borderTop: 0,
@@ -217,5 +231,25 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
   addFormBottomRight: {
     display: 'flex',
     alignItems: 'center'
+  },
+  sideProfile: {
+    display: 'flex',
+    alignItems: 'center',
+    position: 'fixed',
+    bottom: 30,
+    padding: '10px 15px',
+    width: 260,
+    borderRadius: 50,
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: colors.lightBlue[50]
+    }
+  },
+  sideProfileInfo: {
+    flex: 1,
+    marginLeft: 10,
+    '& b': {
+      fontSize: 16
+    }
   }
 }));

@@ -1,17 +1,22 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import Home from './pages/Home';
+import Layout from './pages/Layout';
 import SignIn from './pages/SignIn';
-import Home from './pages/Home/index';
+import UserPage from './pages/User';
 
-const App = () => {
+function App() {
   return (
-    <div className="app">
+    <div className="App">
       <Switch>
-        <Route path="/signin" component={SignIn} />
-        <Route path="/home" component={Home} />
+        <Route path="/signin" component={SignIn} exact />
+        <Layout>
+          <Route path="/home" component={Home} />
+          <Route path="/user" component={UserPage} />
+        </Layout>
       </Switch>
     </div>
   );
-};
+}
 
 export default App;
