@@ -6,6 +6,7 @@ import root from './reducer.root';
 import { TweetsStateInterface } from './ducks/tweets/contracts/state';
 import { TagsStateInterface } from './ducks/tags/contracts/state';
 import { TweetDataStateInterface } from './ducks/tweet/contracts/state';
+import { UserState } from './ducks/user/contracts/state';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -13,6 +14,7 @@ export interface RootState {
   tweets: TweetsStateInterface
   tweet: TweetDataStateInterface
   tags: TagsStateInterface
+  user: UserState
 }
 
 export const store = createStore(
