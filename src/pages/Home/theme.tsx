@@ -138,6 +138,15 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
       paddingTop: 0
     }
   },
+  fullTweetFooter: {
+    margin: '0 auto',
+    borderTop: '1px solid #E6ECF0',
+    left: 0,
+    maxWidth: '100%',
+    justifyContent: 'space-around',
+    padding: '2px 0',
+    marginTop: 20
+  },
   rightSideBlockHeader: {
     borderTop: 0,
     borderLeft: 0,
