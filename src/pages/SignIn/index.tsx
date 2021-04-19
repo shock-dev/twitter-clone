@@ -1,14 +1,13 @@
 import React from 'react';
-import { Button, makeStyles, TextField, Typography } from '@material-ui/core';
+import { Button, makeStyles, Typography } from '@material-ui/core';
 
 import TwitterIcon from '@material-ui/icons/Twitter';
 import SearchIcon from '@material-ui/icons/Search';
 import PeopleIcon from '@material-ui/icons/People';
 import MessageIcon from '@material-ui/icons/Message';
 
-import ModalBlock from '../components/ModalBlock';
-import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
+import LoginModal from './components/LoginModal';
+import RegisterModal from './components/RegisterModal';
 
 export const useStylesSignIn = makeStyles((theme) => ({
   wrapper: {
@@ -158,102 +157,16 @@ const SignIn: React.FC = () => {
           >
             Войти
           </Button>
-          <ModalBlock
-            visible={visibleModal === 'signIn'}
-            onClose={handleCloseModal}
+          <LoginModal
+            open={visibleModal === 'signIn'}
+            handleCloseModal={handleCloseModal}
             classes={classes}
-            title="Войти в аккаунт"
-          >
-            <FormControl
-              className={classes.loginFormControl}
-              component="fieldset"
-              fullWidth
-            >
-              <FormGroup aria-label="position" row>
-                <TextField
-                  className={classes.loginSideField}
-                  autoFocus
-                  id="email"
-                  label="E-Mail"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  variant="filled"
-                  type="email"
-                  fullWidth
-                />
-                <TextField
-                  className={classes.loginSideField}
-                  id="password"
-                  label="Пароль"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  variant="filled"
-                  type="password"
-                  fullWidth
-                />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                >
-                  Войти
-                </Button>
-              </FormGroup>
-            </FormControl>
-          </ModalBlock>
-          <ModalBlock
-            visible={visibleModal === 'signUp'}
-            onClose={handleCloseModal}
+          />
+          <RegisterModal
+            open={visibleModal === 'signUp'}
+            handleCloseModal={handleCloseModal}
             classes={classes}
-            title="Создайте учетную запись">
-            <FormControl
-              className={classes.loginFormControl}
-              component="fieldset"
-              fullWidth
-            >
-              <FormGroup aria-label="position" row>
-                <TextField
-                  className={classes.registerField}
-                  autoFocus
-                  id="name"
-                  label="Имя"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  variant="filled"
-                  type="name"
-                  fullWidth
-                />
-                <TextField
-                  className={classes.registerField}
-                  id="email"
-                  label="E-Mail"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  variant="filled"
-                  type="email"
-                  fullWidth
-                />
-                <TextField
-                  className={classes.registerField}
-                  id="password"
-                  label="Пароль"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  variant="filled"
-                  type="password"
-                  fullWidth
-                />
-                <Button variant="contained" color="primary" fullWidth>
-                  Далее
-                </Button>
-              </FormGroup>
-            </FormControl>
-          </ModalBlock>
+          />
         </div>
       </section>
     </div>
