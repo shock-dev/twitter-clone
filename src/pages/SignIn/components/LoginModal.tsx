@@ -4,12 +4,13 @@ import FormGroup from '@material-ui/core/FormGroup';
 import { Button, TextField } from '@material-ui/core';
 import { useStylesSignIn } from '../index';
 import ModalBlock from '../../../components/ModalBlock';
+import AuthApi from '../../../services/api/auth.api';
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-interface IFormInputs {
+export interface LoginFormProps {
   email: string
   password: string
 }
@@ -30,13 +31,18 @@ const LoginModal: React.FC<LoginModalProps> = ({
   handleCloseModal,
   classes
 }: LoginModalProps): React.ReactElement => {
-  const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
+  const { register, handleSubmit, formState: { errors } } = useForm<LoginFormProps>({
     resolver: yupResolver(LoginFormSchema)
   });
 
-  console.log(errors);
-
-  const onSubmit = (data: IFormInputs) => console.log(data);
+  const onSubmit = async (formData: LoginFormProps) => {
+    try {
+      const { data } = await AuthApi.login(formData);
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <ModalBlock
