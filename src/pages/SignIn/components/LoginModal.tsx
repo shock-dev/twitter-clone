@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import { Button, TextField } from '@material-ui/core';
@@ -8,10 +8,8 @@ import ModalBlock from '../../../components/ModalBlock';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchLogin } from '../../../store/ducks/user/actions';
-import { selectUserStatus } from '../../../store/ducks/user/selectors';
-import { LoadingState } from '../../../store/types';
 
 export interface LoginFormProps {
   email: string
@@ -38,20 +36,16 @@ const LoginModal: React.FC<LoginModalProps> = ({
     resolver: yupResolver(LoginFormSchema)
   });
   const dispatch = useDispatch();
-  const loadingStatus = useSelector(selectUserStatus);
 
   const onSubmit = async (formData: LoginFormProps) => {
-    await dispatch(fetchLogin(formData));
-  };
-
-  useEffect(() => {
-    if (loadingStatus === LoadingState.SUCCESS) {
+    try {
+      await dispatch(fetchLogin(formData));
       console.log('Вы успешно авторизовались');
       handleCloseModal();
-    } else {
+    } catch (e) {
       console.log('Что то пошло не так');
     }
-  }, [loadingStatus]);
+  };
 
   return (
     <ModalBlock
