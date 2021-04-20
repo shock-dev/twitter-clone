@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import Home from './pages/Home';
 import Layout from './pages/Layout';
 import SignIn from './pages/SignIn';
 import UserPage from './pages/User';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import AuthApi from './services/api/auth.api';
 import { setUser } from './store/ducks/user/actions';
+import { selectIsAuth } from './store/ducks/user/selectors';
 
 function App() {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const isAuth = useSelector(selectIsAuth);
 
   const checkAuth = async () => {
     try {
@@ -19,6 +22,12 @@ function App() {
       console.log(e);
     }
   };
+
+  useEffect(() => {
+    if (isAuth) {
+      history.push('/home');
+    }
+  }, [isAuth]);
 
   useEffect(() => {
     checkAuth();
