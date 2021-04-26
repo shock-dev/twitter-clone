@@ -8,7 +8,8 @@ export enum UserActionType {
   SET_USER = 'user/SET_USER',
   SET_LOADING_STATE = 'user/SET_LOADING_STATE',
   FETCH_LOGIN = 'user/FETCH_LOGIN',
-  FETCH_REGISTER = 'user/FETCH_REGISTER'
+  FETCH_REGISTER = 'user/FETCH_REGISTER',
+  FETCH_USER_DATA = 'user/FETCH_USER_DATA'
 }
 
 export interface SetUserActionInterface extends Action<UserActionType> {
@@ -31,6 +32,10 @@ export interface FetchRegisterActionInterface extends Action<UserActionType> {
   payload: RegisterFormProps
 }
 
+export interface FetchUserDataActionInterface extends Action<UserActionType> {
+  type: UserActionType.FETCH_USER_DATA
+}
+
 export const setUser = (payload: UserState['data']): SetUserActionInterface => ({
   type: UserActionType.SET_USER,
   payload
@@ -51,8 +56,13 @@ export const fetchRegister = (payload: RegisterFormProps): FetchRegisterActionIn
   payload
 });
 
+export const fetchUserData = (): FetchUserDataActionInterface => ({
+  type: UserActionType.FETCH_USER_DATA
+});
+
 export type UserAction =
   | SetUserActionInterface
   | SetUserLoadingStateActionInterface
   | FetchLoginActionInterface
   | FetchRegisterActionInterface
+  | FetchUserDataActionInterface

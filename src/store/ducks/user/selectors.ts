@@ -14,4 +14,6 @@ export const selectUserIsLoading = (state: RootState): boolean => selectUserStat
 
 export const selectUserIsSuccess = (state: RootState): boolean => selectUserStatus(state) === LoadingState.SUCCESS;
 
+export const selectUserIsNever = (state: RootState): boolean => selectUserStatus(state) === LoadingState.NEVER;
+
 export const selectUserIsLoaded = (state: RootState): boolean => selectUserStatus(state) === LoadingState.LOADED;
