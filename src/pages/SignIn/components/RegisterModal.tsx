@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import { Button, TextField } from '@material-ui/core';
@@ -7,8 +7,9 @@ import ModalBlock from '../../../components/ModalBlock';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchRegister } from '../../../store/ducks/user/actions';
+import { selectUserIsLoading, selectUserIsSuccess } from '../../../store/ducks/user/selectors';
 
 export interface RegisterFormProps {
   fullname: string;
@@ -38,18 +39,21 @@ const RegisterModal: React.FC<RegisterModalProps> = ({
   classes
 }: RegisterModalProps): React.ReactElement => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectUserIsLoading);
+  const isSuccess = useSelector(selectUserIsSuccess);
   const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormProps>({
     resolver: yupResolver(RegisterFormSchema)
   });
 
-  const onSubmit = async (formData: RegisterFormProps) => {
-    try {
-      await dispatch(fetchRegister(formData));
-      handleCloseModal();
-    } catch (e) {
-      console.log('Что то пошло не так');
-    }
+  const onSubmit = (formData: RegisterFormProps) => {
+    dispatch(fetchRegister(formData));
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      handleCloseModal();
+    }
+  }, [isSuccess]);
 
   return (
     <ModalBlock
@@ -135,7 +139,13 @@ const RegisterModal: React.FC<RegisterModalProps> = ({
               error={!!errors.password_confirm}
               helperText={errors.password_confirm?.message}
             />
-            <Button variant="contained" color="primary" fullWidth type="submit">
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              disabled={isLoading}
+              fullWidth
+            >
               Зарегестрироваться
             </Button>
           </FormGroup>

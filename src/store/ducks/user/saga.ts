@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { SagaIterator } from 'redux-saga';
 import { FetchLoginActionInterface, FetchRegisterActionInterface, setUser, setUserLoadingState, UserActionType } from './actions';
 import { LoadingState } from '../../types';
@@ -30,8 +30,8 @@ function* fetchRegisterRequest({ payload }: FetchRegisterActionInterface): SagaI
 }
 
 function* UserSaga() {
-  yield takeEvery(UserActionType.FETCH_LOGIN, fetchLoginRequest);
-  yield takeEvery(UserActionType.FETCH_REGISTER, fetchRegisterRequest);
+  yield takeLatest(UserActionType.FETCH_LOGIN, fetchLoginRequest);
+  yield takeLatest(UserActionType.FETCH_REGISTER, fetchRegisterRequest);
 }
 
 export default UserSaga;

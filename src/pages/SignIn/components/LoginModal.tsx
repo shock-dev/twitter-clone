@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import { Button, TextField } from '@material-ui/core';
@@ -8,8 +8,9 @@ import ModalBlock from '../../../components/ModalBlock';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchLogin } from '../../../store/ducks/user/actions';
+import { selectUserIsLoading, selectUserIsSuccess } from '../../../store/ducks/user/selectors';
 
 export interface LoginFormProps {
   email: string
@@ -33,14 +34,21 @@ const LoginModal: React.FC<LoginModalProps> = ({
   classes
 }: LoginModalProps): React.ReactElement => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectUserIsLoading);
+  const isSuccess = useSelector(selectUserIsSuccess);
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormProps>({
     resolver: yupResolver(LoginFormSchema)
   });
 
-  const onSubmit = async (formData: LoginFormProps) => {
-    await dispatch(fetchLogin(formData));
-    handleCloseModal();
+  const onSubmit = (formData: LoginFormProps) => {
+    dispatch(fetchLogin(formData));
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      handleCloseModal();
+    }
+  }, [isSuccess]);
 
   return (
     <ModalBlock
@@ -89,6 +97,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
               variant="contained"
               color="primary"
               type="submit"
+              disabled={isLoading}
               fullWidth
             >
               Войти
