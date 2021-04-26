@@ -11,10 +11,8 @@ function* fetchLoginRequest({ payload }: FetchLoginActionInterface): SagaIterato
     localStorage.setItem('token', `Bearer ${token}`);
     yield put(setUser(user));
     yield put(setUserLoadingState(LoadingState.SUCCESS));
-    console.log('Вы успешно авторизовались');
   } catch (e) {
     yield put(setUserLoadingState(LoadingState.ERROR));
-    console.log('Что то пошло не так');
   }
 }
 
@@ -29,9 +27,21 @@ function* fetchRegisterRequest({ payload }: FetchRegisterActionInterface): SagaI
   }
 }
 
+function* fetchUserDataRequest(): SagaIterator {
+  try {
+    yield put(setUserLoadingState(LoadingState.LOADING));
+    const user = yield call(AuthApi.getMe);
+    yield put(setUser(user));
+    yield put(setUserLoadingState(LoadingState.SUCCESS));
+  } catch (e) {
+    yield put(setUserLoadingState(LoadingState.ERROR));
+  }
+}
+
 function* UserSaga() {
   yield takeLatest(UserActionType.FETCH_LOGIN, fetchLoginRequest);
   yield takeLatest(UserActionType.FETCH_REGISTER, fetchRegisterRequest);
+  yield takeLatest(UserActionType.FETCH_USER_DATA, fetchUserDataRequest);
 }
 
 export default UserSaga;
