@@ -32,19 +32,14 @@ const LoginModal: React.FC<LoginModalProps> = ({
   handleCloseModal,
   classes
 }: LoginModalProps): React.ReactElement => {
+  const dispatch = useDispatch();
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormProps>({
     resolver: yupResolver(LoginFormSchema)
   });
-  const dispatch = useDispatch();
 
   const onSubmit = async (formData: LoginFormProps) => {
-    try {
-      await dispatch(fetchLogin(formData));
-      console.log('Вы успешно авторизовались');
-      handleCloseModal();
-    } catch (e) {
-      console.log('Что то пошло не так');
-    }
+    await dispatch(fetchLogin(formData));
+    handleCloseModal();
   };
 
   return (
