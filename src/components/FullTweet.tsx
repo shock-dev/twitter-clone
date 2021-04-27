@@ -64,10 +64,6 @@ const FullTweet: React.FC = (): React.ReactElement | null => {
             <b>{tweetData.user.fullname}</b>&nbsp;
             <div>
               <span className={classes.tweetUserName}>@{tweetData.user.username}</span>
-              &nbsp;
-              <span className={classes.tweetUserName}>·</span>
-              &nbsp;
-              <span className={classes.tweetUserName}>1 ч</span>
             </div>
           </Typography>
         </div>
