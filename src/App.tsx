@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import TwitterIcon from '@material-ui/icons/Twitter';
 import Home from './pages/Home';
 import Layout from './pages/Layout';
 import SignIn from './pages/SignIn';
 import UserPage from './pages/User';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserData } from './store/ducks/user/actions';
 import { selectIsAuth, selectUserIsLoading, selectUserIsNever } from './store/ducks/user/selectors';
 import { useHomeStyles } from './pages/theme';
